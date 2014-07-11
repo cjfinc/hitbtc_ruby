@@ -117,7 +117,7 @@ module Hitbtc
       else
         opts = {}
         opts[:clientOrderId] = order.orderId
-        opts[:cancelRequestClientOrderId] = Time.now.to_i.to_s
+        opts[:cancelRequestClientOrderId] = nonce
         opts[:symbol] = order.symbol
         opts[:side] = order.side
         opts[:price] = order.orderPrice
@@ -141,7 +141,7 @@ module Hitbtc
 
     #### Private User Trading (Still experimental!) ####
     def create_order opts={}
-      opts[:clientOrderId] = Time.now.to_i.to_s
+      opts[:clientOrderId] = nonce
       post_private 'new_order', opts
     end
     ######################
